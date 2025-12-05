@@ -5,7 +5,14 @@ import requests
 import os
 import gdown
 
-movie_dict = pickle.load(open('movie_dict.pkl','rb'))
+MOVIE_DICT_FILE = "movie_dict.pkl"
+MOVIE_DICT_FILE_ID = "1YOuYZ30OEruZmJiTRGIZd9xY6Cbr1e3U"
+MOVIE_DICT_URL = f"https://drive.google.com/uc?id={MOVIE_DICT_FILE_ID}"
+
+if not os.path.exists(MOVIE_DICT_FILE):
+    gdown.download(MOVIE_DICT_URL, MOVIE_DICT_FILE, quiet=False)
+
+movie_dict = pickle.load(open(MOVIE_DICT_FILE, "rb"))
 df = pd.DataFrame(movie_dict)
 
 SIM_FILE = "similarity.pkl"
