@@ -2,11 +2,20 @@ import streamlit as st
 import pickle
 import pandas as pd
 import requests
+import os
+import gdown
 
 movie_dict = pickle.load(open('movie_dict.pkl','rb'))
 df = pd.DataFrame(movie_dict)
 
-similarity = pickle.load(open('similarity.pkl','rb'))
+SIM_FILE = "similarity.pkl"
+FILE_ID = "15TvN-zapEvKcdJlalvkCv-7JX4sjRcWb"
+GDRIVE_URL = f"https://drive.google.com/uc?id={FILE_ID}"
+
+if not os.path.exists(SIM_FILE):
+    gdown.download(GDRIVE_URL, SIM_FILE, quiet=False)
+
+similarity = pickle.load(open(SIM_FILE, "rb"))
 
 def fetch_poster(movie_id):
     response = requests.get('https://api.themoviedb.org/3/movie/{}?api_key=3907a8114aab2034916079c868b5af45&language=en-US'.format(movie_id))
