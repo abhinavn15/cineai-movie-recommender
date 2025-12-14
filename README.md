@@ -13,6 +13,8 @@ It analyzes movie metadata, computes similarity scores, and delivers personalize
 4. **Fetch movie posters** in real-time using the TMDB API.
 5. **Render results** in Streamlit using responsive column layouts with images and titles.
 
+Applicarion url: https://cineaipro.streamlit.app/
+
 ---
 
 ##  Impact
